@@ -5,7 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.lucien.hkmdemo.utils.common.CommonLog;
+
+import com.lucien.team.util.common.CommonLog;
 
 import java.util.List;
 
@@ -189,26 +190,22 @@ public class DBDao implements DBService {
         return cursor;
     }
 
-    public Cursor getMoviesByType(int type) {
-        String sql = "SELECT "
-                + DBHelper.DBConstants._ID + ", "
-                + DBHelper.DBConstants.NAME + ", "
-                + DBHelper.DBConstants.THUMBNAIL_URL + ", "
-                + DBHelper.DBConstants.TOTAL_REVENUE + ", "
-                + DBHelper.DBConstants.OPEN_DATE + " "
-                + "FROM " + DBHelper.DBConstants.TABLE_USER;
-
-        switch (type) {
-            case 0:
-                sql = sql + " ORDER BY " + DBHelper.DBConstants.TOTAL_REVENUE + " DESC";
-                break;
-            case 1:
-                sql = sql + " ORDER BY " + DBHelper.DBConstants.TOTAL_REVENUE + " ASC";
-                break;
-            default:
-                sql = "SELECT * FROM " + DBHelper.DBConstants.TABLE_USER;
-                break;
-        }
+    public Cursor getAllUsers() {
+        String sql = "SELECT * FROM " + DBHelper.DBConstants.TABLE_USER;
         return execRawQuery(sql, null);
     }
+
+    public Cursor getTeamUsers() {
+        String sql = "SELECT * FROM " + DBHelper.DBConstants.TABLE_TEAM;
+        return execRawQuery(sql, null);
+    }
+
+    public Cursor getFormedUsers() {
+        String sql = "select DISTINCT table_user.name," +
+                " table_user.avatar,table_user.late_count, " +
+                "table_team.team_id from table_user" +
+                " inner join table_team on table_user.name = table_team.name";
+        return execRawQuery(sql, null);
+    }
+
 }

@@ -6,7 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.widget.ImageView;
 
-import com.lucien.hkmdemo.utils.common.CommonLog;
+import com.lucien.team.util.common.CommonLog;
 
 
 /**
@@ -71,4 +71,34 @@ public class ImgUtils {
 
         return imgBitmap;
     }
+
+    public static void setImage(Context context, String imageUrl,
+                                final ImageView view) {
+        // get loader
+        AsyncImageLoader loader = new AsyncImageLoader(context);
+        // cache image to external folder
+        loader.setCacheToFile(true);
+        // set external cache folder path
+        loader.setCacheDir(context.getCacheDir().getAbsolutePath());
+
+        CommonLog.i(CLASSTAG, "External path = " + context.getCacheDir().getAbsolutePath());
+
+        // start load image
+        loader.downloadImage(imageUrl, true, new AsyncImageLoader.ImageCallback() {
+            @Override
+            public void onImageLoaded(Bitmap bitmap, String imageUrl) {
+                if (bitmap != null) {
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                        view.setImageDrawable(new BitmapDrawable(bitmap));
+                    } else {
+                        view.setImageDrawable(new BitmapDrawable(null, bitmap));
+                    }
+                } else {
+                    // download failed, set default image
+                    CommonLog.e(CLASSTAG, "Download image failed!");
+                }
+            }
+        });
+    }
+
 }

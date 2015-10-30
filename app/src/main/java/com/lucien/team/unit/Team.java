@@ -5,6 +5,7 @@ package com.lucien.team.unit;
  */
 public class Team {
     private String name;
+    private int teamId;
 
     public String getName() {
         return name;
@@ -14,10 +15,19 @@ public class Team {
         this.name = name;
     }
 
+    public int getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
+    }
+
     @Override
     public String toString() {
         return "Team{" +
                 "name='" + name + '\'' +
+                ", teamId=" + teamId +
                 '}';
     }
 }

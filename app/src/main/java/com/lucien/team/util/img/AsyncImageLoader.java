@@ -4,7 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Handler;
 
-import com.lucien.hkmdemo.utils.common.CommonLog;
+
+import com.lucien.team.util.common.CommonLog;
 
 import java.util.HashSet;
 import java.util.concurrent.ExecutorService;

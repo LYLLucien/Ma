@@ -35,12 +35,13 @@ public class DBHelper extends SQLiteOpenHelper {
         String sql_late =
                 "CREATE TABLE " + DBConstants.TABLE_LATES + " (" +
                         DBConstants._ID + " " + DBConstants.INTEGER + " PRIMARY KEY AUTOINCREMENT," +
-                        DBConstants.NAME + " " + DBConstants.VARCHAR(32) +
-                        DBConstants.LATE_TIME + " " + DBConstants.VARCHAR(64) + ")";
+                        DBConstants.NAME + " " + DBConstants.VARCHAR(32) + " NOT NULL, " +
+                        DBConstants.LATE_TIME + " " + DBConstants.VARCHAR(64) + "NOT NULL UNIQUE)";
         String sql_team =
-                "CREATE TABLE " + DBConstants.TABLE_LATES + " (" +
+                "CREATE TABLE " + DBConstants.TABLE_TEAM + " (" +
                         DBConstants._ID + " " + DBConstants.INTEGER + " PRIMARY KEY AUTOINCREMENT," +
-                        DBConstants.TEAM + " " + DBConstants.VARCHAR(32) + ")";
+                        DBConstants.NAME + " " + DBConstants.VARCHAR(32) + " NOT NULL UNIQUE ON CONFLICT REPLACE, " +
+                        DBConstants.TEAM_ID + " " + DBConstants.INTEGER + " NOT NULL)";
         db.execSQL(sql_user);
         db.execSQL(sql_late);
         db.execSQL(sql_team);
@@ -53,13 +54,13 @@ public class DBHelper extends SQLiteOpenHelper {
             default:
                 db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_USER);
                 db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_LATES);
-
+                db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_TEAM);
                 onCreate(db);
         }
     }
 
     public static final class DBConstants implements BaseColumns {
-        public static final String DB_NAME = "hkm.db";
+        public static final String DB_NAME = "ma.db";
         public static final int VERSION = 1;
 
         public static final String TEXT = "text";
@@ -75,12 +76,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
         public static final String _ID = "_id";
         public static final String NAME = "name";
+        public static final String TEAM_ID = "team_id";
         public static final String AVATAR = "avatar";
         public static final String AVATAR_THUMBNAIL_URL = "avatar_thumbnail_url";
         public static final String LATE_COUNT = "late_count";
         public static final String LATE_TIME = "lates";
         public static final String TEAM = "team";
-        public static final String STATUS = "status";
 
     }
 }

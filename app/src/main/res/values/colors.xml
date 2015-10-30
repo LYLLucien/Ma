@@ -4,4 +4,32 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+
+    <color name="btnPrimary">#1B92C1</color>
+    <color name="btnPrimaryNormal">#1D58A4</color>
+    <color name="btnPrimaryDark">#151D5F</color>
+
+    <color name="btnOnPrimary">#6BC0DA</color>
+    <color name="btnOnPrimaryNormal">#1B9AC5</color>
+    <color name="btnOnPrimaryDark">#163D77</color>
+
+
+    <color name="btnStrokePrimary">#39A4CA</color>
+    <color name="btnStrokePrimaryDark">#164378</color>
+
+    <!-- group 2-->
+    <color name="btnPrimary2">#82e79d</color>
+    <color name="btnPrimaryNormal2">#21c44d</color>
+    <color name="btnPrimaryDark2">#054b04</color>
+
+    <color name="btnOnPrimary2">#88e7b6</color>
+    <color name="btnOnPrimaryNormal2">#4fed91</color>
+    <color name="btnOnPrimaryDark2">#165c0f</color>
+
+
+    <color name="btnStrokePrimary2">#60f4b1</color>
+    <color name="btnStrokePrimaryDark2">#298b4d</color>
+
+    <color name="txt_group_2">#ffff00</color>
 </resources>

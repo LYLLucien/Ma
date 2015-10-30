@@ -1,5 +1,6 @@
 package com.lucien.team.ui.activity;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,8 @@ import com.lucien.team.R;
 import com.lucien.team.api.Api;
 import com.lucien.team.api.ApiHelper;
 import com.lucien.team.app.Config;
+import com.lucien.team.db.DBDao;
+import com.lucien.team.db.DBService;
 import com.lucien.team.ui.fragment.MainFragment;
 
 import java.util.List;
@@ -17,8 +20,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
-        addFragment(MainFragment.newInstance(), getResString(R.string.app_name));
-        new GetDataTask().execute(Config.URL_HOST + Config.URL_API + Config.URL_USER);
+        addFragment(MainFragment.newInstance(), getResString(R.string.main_fragment));
     }
 
     @Override
@@ -41,21 +43,5 @@ public class MainActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private class GetDataTask extends AsyncTask<String, Void, List<?>> {
-
-        @Override
-        protected List<?> doInBackground(String... params) {
-            return ApiHelper.GetJsonData(Api.getApiInstance(getContext()), params[0]);
-        }
-
-        @Override
-        protected void onPostExecute(List<?> result) {
-            super.onPostExecute(result);
-            for (int i = 0; i < result.size(); i++) {
-                System.out.println(result.get(i).toString());
-            }
-        }
     }
 }

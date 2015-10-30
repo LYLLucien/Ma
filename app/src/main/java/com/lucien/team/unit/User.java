@@ -7,12 +7,21 @@ import java.util.Arrays;
  */
 public class User {
 
+    private String _id;
     private String name;
     private String avatar;
     private String avatar_thumbnail_url;
     private int late_count;
     private String[] lates;
     private String[] teams;
+
+    public String getId() {
+        return _id;
+    }
+
+    public void setId(String _id) {
+        this._id = _id;
+    }
 
     public String getName() {
         return name;
@@ -61,6 +70,7 @@ public class User {
     public void setTeams(String[] teams) {
         this.teams = teams;
     }
+
 
     @Override
     public String toString() {
